@@ -1,31 +1,41 @@
-import Home from './components/Home.vue'
-import SignUp from './components/SignUp.vue'
-import Login from './components/Login.vue'
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
+import store from './store/store';
+import { IS_USER_AUTHENTICATE_GETTER } from './store/store_constants';
+
+const Login = () => import('./components/Login.vue');
+const Signup = () => import('./components/Signup.vue');
+const Home = () => import('./components/Home.vue');
+const Post = () => import('./components/Post.vue');
 
 const routes = [
-
-    {
-        name: "Home",
-        component: Home,
-        path: "/",
-    },
-    {
-        name: "SignUp",
-        component: SignUp,
-        path: "/signUp",
-    },
-    {
-        name: "Login",
-        component: Login,
-        path: "/login",
-    }
+    { path: '', component: Home },
+    { path: '/login', component: Login, meta: { auth: false } },
+    { path: '/signup', component: Signup, meta: { auth: false } },
+    { path: '/posts', component: Post, meta: { auth: true } },
 ];
 
-const router = createRouter ({
-
-    history: createWebHashHistory(),
+const router = createRouter({
+    history: createWebHistory(),
     routes,
+});
+
+router.beforeEach((to, from, next) => {
+
+    if (
+        'auth' in to.meta &&
+        to.meta.auth &&
+        !store.getters[`auth/${IS_USER_AUTHENTICATE_GETTER}`]
+    ) {
+        next('/login');
+    } else if (
+        'auth' in to.meta &&
+        !to.meta.auth &&
+        store.getters[`auth/${IS_USER_AUTHENTICATE_GETTER}`]
+    ) {
+        next('/posts');
+    } else {
+        next();
+    }
 });
 
 export default router;

@@ -1,9 +1,3 @@
-<template>
-
-    <h1>Home</h1>
-
-</template>
-
 <script>
 
     export default {
@@ -12,3 +6,14 @@
     }
     
 </script>
+
+<template>
+
+    <div>
+        <div>Home Page</div>
+        <div>
+            <router-link to="/login">Go to Login</router-link>
+        </div>
+    </div>
+
+</template>
