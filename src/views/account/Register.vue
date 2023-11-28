@@ -8,14 +8,14 @@
     const schema = Yup.object().shape({
         
         firstName: Yup.string()
-            .required('First Name is required'),
+            .required('Obligatorio'),
         lastName: Yup.string()
-            .required('Last Name is required'),
+            .required('Obligatorio'),
         username: Yup.string()
-            .required('Username is required'),
+            .required('Obligatorio'),
         password: Yup.string()
-            .required('Password is required')
-            .min(6, 'Password must be at least 6 characters')
+            .required('Obligatorio')
+            .min(6, 'La contraseña debe ser de al menos 6 caracteres')
     });
 
     async function onSubmit(values) {
@@ -25,7 +25,7 @@
         try {
             await usersStore.register(values);
             await router.push('/account/login');
-            alertStore.success('Registration successful');
+            alertStore.success('Registrado');
         } catch (error) { 
             alertStore.error(error);
         }
