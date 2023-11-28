@@ -1,7 +1,7 @@
 <script setup>
 
     import { storeToRefs } from 'pinia';
-    import { useAuthStore } from '@/stores';
+    import { useAuthStore } from '@/stores/Index.js';
 
     const authStore = useAuthStore();
     const { user } = storeToRefs(authStore);

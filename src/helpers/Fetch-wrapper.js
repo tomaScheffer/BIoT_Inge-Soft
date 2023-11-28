@@ -1,4 +1,4 @@
-import { useAuthStore } from '@/stores';
+import { useAuthStore } from '@/stores/Index.js';
 
 export const fetchWrapper = {
 

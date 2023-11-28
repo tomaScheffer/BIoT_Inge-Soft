@@ -1,4 +1,4 @@
-import { Layout, List, AddEdit } from '@/views/users';
+import { Layout, List, AddEdit } from '@/views/users/Index.js';
 
 export default {
     

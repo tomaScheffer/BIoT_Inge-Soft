@@ -1,7 +1,7 @@
 <script setup>
 
-    import { useAuthStore } from '@/stores';
-    import { router } from '@/router';
+    import { useAuthStore } from '@/stores/Index.js';
+    import { router } from '@/router/Index.js';
 
     // Redirect home if already logged in
     const authStore = useAuthStore();

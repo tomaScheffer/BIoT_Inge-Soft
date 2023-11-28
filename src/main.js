@@ -1,8 +1,8 @@
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import App from './App.vue';
-import { router } from './router';
-import { fakeBackend } from './helpers';
+import { router } from './router/Index.js';
+import { fakeBackend } from './helpers/Index.js';
 fakeBackend();
 
 const app = createApp(App);

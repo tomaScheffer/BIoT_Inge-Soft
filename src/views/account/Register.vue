@@ -2,8 +2,8 @@
 
     import { Form, Field } from 'vee-validate';
     import * as Yup from 'yup';
-    import { useUsersStore, useAlertStore } from '@/stores';
-    import { router } from '@/router';
+    import { useUsersStore, useAlertStore } from '@/stores/Index.js';
+    import { router } from '@/router/Index.js';
 
     const schema = Yup.object().shape({
         

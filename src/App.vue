@@ -1,7 +1,7 @@
 <script setup>
 
-  import { Nav, Alert } from '@/components';
-  import { useAuthStore } from '@/stores';
+  import { Nav, Alert } from '@/components/Index.js';
+  import { useAuthStore } from '@/stores/Index.js';
 
   const authStore = useAuthStore();
 

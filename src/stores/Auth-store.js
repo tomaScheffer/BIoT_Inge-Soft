@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
-import { fetchWrapper } from '@/helpers';
-import { router } from '@/router';
-import { useAlertStore } from '@/stores';
+import { fetchWrapper } from '@/helpers/Index.js';
+import { router } from '@/router/Index.js';
+import { useAlertStore } from '@/stores/Index.js';
 
 const baseUrl = `${import.meta.env.VITE_API_URL}/users`;
 

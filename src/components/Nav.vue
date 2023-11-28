@@ -1,6 +1,6 @@
 <script setup>
 
-    import { useAuthStore } from '@/stores';
+    import { useAuthStore } from '@/stores/Index.js';
 
     const authStore = useAuthStore();
 

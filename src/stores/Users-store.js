@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
-import { fetchWrapper } from '@/helpers';
-import { useAuthStore } from '@/stores';
+import { fetchWrapper } from '@/helpers/Index.js';
+import { useAuthStore } from '@/stores/Index.js';
 
 const baseUrl = `${import.meta.env.VITE_API_URL}/users`;
 
