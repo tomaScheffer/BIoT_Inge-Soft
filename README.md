@@ -22,5 +22,5 @@ npm run build
 npm install vue-router@next
 ```
 ```sh
-npm install axios
+npm install vee-validate@next
 ```

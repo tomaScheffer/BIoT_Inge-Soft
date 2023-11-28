@@ -1,26 +1,26 @@
-<script>
+<script setup>
 
-  export default {
+  import { Nav, Alert } from '@/components';
+  import { useAuthStore } from '@/stores';
 
-  name: 'App',
-  }
+  const authStore = useAuthStore();
 
 </script>
 
 <template>
 
-  <router-view/>
-  
+    <div class="app-container" :class="authStore.user && 'bg-light'">
+        <Nav />
+        <Alert />
+        <div class="container pt-4 pb-4">
+            <router-view />
+        </div>
+    </div>
+
 </template>
 
 <style>
 
-  #app {
-
-      font-family: Aveni, Helvetica, Arial, sans-serif;
-      text-align: center;
-      color: #2c3e50;
-      margin-top: 60px;
-  }
+  @import '@/assets/base.css';
 
 </style>
