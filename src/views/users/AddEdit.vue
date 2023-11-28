@@ -15,7 +15,7 @@
     let title = 'Add User';
     let user = null;
     if (id) {
-        // Edit mode
+        // Modo edición
         title = 'Edit User';
         ({ user } = storeToRefs(usersStore));
         usersStore.getById(id);
@@ -23,16 +23,16 @@
 
     const schema = Yup.object().shape({
         firstName: Yup.string()
-            .required('First Name is required'),
+            .required('El nombre es obligatorio'),
         lastName: Yup.string()
-            .required('Last Name is required'),
+            .required('El apellido es obligatorio'),
         username: Yup.string()
-            .required('Username is required'),
+            .required('El nombre de usuario es obligatorio'),
         password: Yup.string()
             .transform(x => x === '' ? undefined : x)
-            // Password optional in edit mode
-            .concat(user ? null : Yup.string().required('Password is required'))
-            .min(6, 'Password must be at least 6 characters')
+            // Contraseña opcional en modo edición
+            .concat(user ? null : Yup.string().required('La contraseña es requerida'))
+            .min(6, 'Mínimo 6 caracteres para la contraseña')
     });
 
     async function onSubmit(values) {
@@ -40,10 +40,10 @@
             let message;
             if (user) {
                 await usersStore.update(user.value.id, values)
-                message = 'User updated';
+                message = 'Usuario actualizado';
             } else {
                 await usersStore.register(values);
-                message = 'User added';
+                message = 'Usuario agregado';
             }
             await router.push('/users');
             alertStore.success(message);
@@ -61,26 +61,26 @@
         <Form @submit="onSubmit" :validation-schema="schema" :initial-values="user" v-slot="{ errors, isSubmitting }">
             <div class="form-row">
                 <div class="form-group col">
-                    <label>First Name</label>
+                    <label>Nombre</label>
                     <Field name="firstName" type="text" class="form-control" :class="{ 'is-invalid': errors.firstName }" />
                     <div class="invalid-feedback">{{ errors.firstName }}</div>
                 </div>
                 <div class="form-group col">
-                    <label>Last Name</label>
+                    <label>Apellido</label>
                     <Field name="lastName" type="text" class="form-control" :class="{ 'is-invalid': errors.lastName }" />
                     <div class="invalid-feedback">{{ errors.lastName }}</div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col">
-                    <label>Username</label>
+                    <label>Nombre Usuario</label>
                     <Field name="username" type="text" class="form-control" :class="{ 'is-invalid': errors.username }" />
                     <div class="invalid-feedback">{{ errors.username }}</div>
                 </div>
                 <div class="form-group col">
                     <label>
                         Password
-                        <em v-if="user">(Leave blank to keep the same password)</em>
+                        <em v-if="user">(Dejar en blanco para conservar anterior contraseña)</em>
                     </label>
                     <Field name="password" type="password" class="form-control" :class="{ 'is-invalid': errors.password }" />
                     <div class="invalid-feedback">{{ errors.password }}</div>
@@ -89,9 +89,9 @@
             <div class="form-group">
                 <button class="btn btn-primary" :disabled="isSubmitting">
                     <span v-show="isSubmitting" class="spinner-border spinner-border-sm mr-1"></span>
-                    Save
+                    Guardar
                 </button>
-                <router-link to="/users" class="btn btn-link">Cancel</router-link>
+                <router-link to="/users" class="btn btn-link">Cancelar</router-link>
             </div>
         </Form>
     </template>
@@ -102,7 +102,7 @@
     </template>
     <template v-if="user?.error">
         <div class="text-center m-5">
-            <div class="text-danger">Error loading user: {{user.error}}</div>
+            <div class="text-danger">error: {{user.error}}</div>
         </div>
     </template>
     

@@ -22,25 +22,25 @@
 <template>
 
     <div class="card m-3">
-        <h4 class="card-header">Login</h4>
+        <h4 class="card-header">Iniciar Sesión</h4>
         <div class="card-body">
             <Form @submit="onSubmit" :validation-schema="schema" v-slot="{ errors, isSubmitting }">
                 <div class="form-group">
-                    <label>Username</label>
+                    <label>Nombre de Usuario</label>
                     <Field name="username" type="text" class="form-control" :class="{ 'is-invalid': errors.username }" />
                     <div class="invalid-feedback">{{ errors.username }}</div>
                 </div>
                 <div class="form-group">
-                    <label>Password</label>
+                    <label>Contraseña</label>
                     <Field name="password" type="password" class="form-control" :class="{ 'is-invalid': errors.password }" />
                     <div class="invalid-feedback">{{ errors.password }}</div>
                 </div>
                 <div class="form-group">
                     <button class="btn btn-primary" :disabled="isSubmitting">
                         <span v-show="isSubmitting" class="spinner-border spinner-border-sm mr-1"></span>
-                        Login
+                        Iniciar Sesión
                     </button>
-                    <router-link to="register" class="btn btn-link">Register</router-link>
+                    <router-link to="register" class="btn btn-link">Registrarse</router-link>
                 </div>
             </Form>
         </div>
