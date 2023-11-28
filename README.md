@@ -24,3 +24,6 @@ npm install vue-router@next
 ```sh
 npm install vee-validate@next
 ```
+```sh
+npm install yup
+```

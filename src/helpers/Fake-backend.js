@@ -113,7 +113,6 @@ function fakeBackend() {
             }
 
             // Helper functions
-
             function ok(body) {
                 resolve({ ok: true, ...headers(), json: () => Promise.resolve(body) })
             }
