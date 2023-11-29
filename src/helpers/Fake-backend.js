@@ -26,11 +26,11 @@ function fakeBackend() {
                     case url.match(/\/users\/\d+$/) && opts.method === 'GET':
                         return getUserById();
                     case url.match(/\/users\/\d+$/) && opts.method === 'PUT':
-                        return updateUser();
+                        return updateUser();|
                     case url.match(/\/users\/\d+$/) && opts.method === 'DELETE':
                         return deleteUser();
                     default:
-                        // pass through any requests not handled above
+                        // Pass through any requests not handled above
                         return realFetch(url, opts)
                             .then(response => resolve(response))
                             .catch(error => reject(error));

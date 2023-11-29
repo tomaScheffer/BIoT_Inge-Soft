@@ -12,11 +12,11 @@
     const route = useRoute();
     const id = route.params.id;
 
-    let title = 'Add User';
+    let title = 'Agregar Usuario';
     let user = null;
     if (id) {
         // Modo edición
-        title = 'Edit User';
+        title = 'Editar Usuario';
         ({ user } = storeToRefs(usersStore));
         usersStore.getById(id);
     }
@@ -79,7 +79,7 @@
                 </div>
                 <div class="form-group col">
                     <label>
-                        Password
+                        Contraseña
                         <em v-if="user">(Dejar en blanco para conservar anterior contraseña)</em>
                     </label>
                     <Field name="password" type="password" class="form-control" :class="{ 'is-invalid': errors.password }" />
