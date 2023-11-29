@@ -1,4 +1,5 @@
 <script setup>
+
 import { storeToRefs } from 'pinia';
 import { useAuthStore, useUsersStore } from '@/stores/Index.js';
 
@@ -6,12 +7,15 @@ const authStore = useAuthStore();
 const { user } = storeToRefs(authStore);
 
 const usersStore = useUsersStore();
-const { latestTemperature } = storeToRefs(usersStore);
+const { latestTemperature } = 15;
+const { latestHumedity } = 80;
+const { latestPh } = 7;
 
 // Placeholder icons
 const temperatureIcon = "/public/thermometer.png"
 const phIcon = "/public/ph.png";
 const humidityIcon = "/public/humidity.png";
+
 </script>
 
 <template>
@@ -31,7 +35,7 @@ const humidityIcon = "/public/humidity.png";
         <img :src="phIcon" alt="Ícono de pH" class="sensor-icon" />
         <h2 class="sensor-title">Nivel de pH</h2>
         <!-- Placeholder data, replace with actual pH data -->
-        <p class="latest-data">7.0</p>
+        <p class="latest-data">{{ latestPh }}</p>
       </div>
 
       <!-- Humidity Card -->
@@ -39,7 +43,7 @@ const humidityIcon = "/public/humidity.png";
         <img :src="humidityIcon" alt="Ícono de Humedad" class="sensor-icon" />
         <h2 class="sensor-title">Humedad</h2>
         <!-- Placeholder data, replace with actual humidity data -->
-        <p class="latest-data">60%</p>
+        <p class="latest-data">{{ latestHumedity }}</p>
       </div>
     </div>
   </div>

@@ -27,3 +27,9 @@ npm install vee-validate@next
 ```sh
 npm install yup
 ```
+```sh
+npm install axios
+```
+```sh
+npm install mssql
+```
