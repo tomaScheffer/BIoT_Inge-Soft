@@ -3,25 +3,90 @@
 import { storeToRefs } from 'pinia';
 import { useAuthStore, useUsersStore } from '@/stores/Index.js';
 
+
 const authStore = useAuthStore();
 const { user } = storeToRefs(authStore);
 
 const usersStore = useUsersStore();
-const { latestTemperature } = 15;
-const { latestHumedity } = 80;
-const { latestPh } = 7;
+//let  latestTemperature  = 15;
+//let  latestHumedity  = 80;
+//let  latestPh  = 7;
 
 // Placeholder icons
 const temperatureIcon = "/public/thermometer.png"
 const phIcon = "/public/ph.png";
 const humidityIcon = "/public/humidity.png";
+ 
+ 
+</script> 
 
+<script>
+export default {
+  data() {
+    return {
+      //mensaje: '¡Hola, Vue!',
+      latestTemperature: null,
+      latestHumedity: null,
+      latestPh: null,
+      intervalId: null, // Nuevo: variable para almacenar el ID del intervalo
+    };
+  },
+  methods: {
+    async obtener() {
+      //alert(this.mensaje);
+      try {
+        // Realiza una solicitud directa al servidor Express
+        const response = await fetch('http://localhost:5000/api/obtenerValoresDispositivo');
+        const data = await response.json();
+
+        this.latestTemperature = data[2].cl_valorInstantaneoInterpretadoSensores;
+        this.latestHumedity = data[1].cl_valorInstantaneoInterpretadoSensores;
+        this.latestPh = data[0].cl_valorInstantaneoInterpretadoSensores;
+  
+      //latestTemperature = data[2].cl_valorInstantaneoInterpretadoSensores;
+        console.log('data:',data);
+        //console.log('Datos de la base de datos:', data);
+        // Realizar alguna acción con los datos, como mostrarlos en la interfaz de usuario.
+      } catch (error) {
+        console.error('Error al obtener datos de la base de datos:', error);
+      }
+
+
+    },
+    iniciarActualizacionAutomatica() {
+      // Detener el intervalo anterior si existe
+      clearInterval(this.intervalId);
+
+      // Iniciar la actualización automática cada segundo
+      this.intervalId = setInterval(this.obtener, 1000);
+    },
+  },
+
+  mounted() {
+    // Inicia la actualización automática al montar el componente
+    this.iniciarActualizacionAutomatica();
+  },
+
+  // Nuevo: Asegurarse de detener el intervalo antes de destruir el componente
+  beforeDestroy() {
+    clearInterval(this.intervalId);
+  },
+};
 </script>
 
+
+
+
+ 
 <template>
   <div v-if="user">
     <h1>Hola {{ user.firstName }}!</h1>
+     <div>
+      <a href="http://localhost:3000/d/sLUcEOMIk/moisture?orgId=1&refresh=5s"  target="_blank">Dashboard</a>
 
+   </div>  
+   
+      
     <div class="sensor-cards-container">
       <!-- Temperature Card -->
       <div class="sensor-card">
