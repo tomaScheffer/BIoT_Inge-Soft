@@ -7,9 +7,9 @@
 
     const schema = Yup.object().shape({
         
-        firstName: Yup.string()
+        first_name: Yup.string()
             .required('Obligatorio'),
-        lastName: Yup.string()
+        last_name: Yup.string()
             .required('Obligatorio'),
         username: Yup.string()
             .required('Obligatorio'),
@@ -38,25 +38,25 @@
     <div class="card m-3">
         <h4 class="card-header">Registrarse</h4>
         <div class="card-body">
-            <Form @submit="onSubmit" :validation-schema="schema" v-slot="{ errors, isSubmitting }">
+            <Form @submit="onSubmit" :validation-schema="schema" v-slot="{ errors, isSubmitting, values }">
                 <div class="form-group">
                     <label>Nombre</label>
-                    <Field name="firstName" type="text" class="form-control" :class="{ 'is-invalid': errors.firstName }" />
+                    <Field name="first_name" v-model="values.first_name" type="text" class="form-control" :class="{ 'is-invalid': errors.firstName }" />
                     <div class="invalid-feedback">{{ errors.firstName }}</div>
                 </div>
                 <div class="form-group">
                     <label>Apellido</label>
-                    <Field name="lastName" type="text" class="form-control" :class="{ 'is-invalid': errors.lastName }" />
+                    <Field name="last_name" v-model="values.last_name" type="text" class="form-control" :class="{ 'is-invalid': errors.lastName }" />
                     <div class="invalid-feedback">{{ errors.lastName }}</div>
                 </div>
                 <div class="form-group">
                     <label>Nombre de Usuario</label>
-                    <Field name="username" type="text" class="form-control" :class="{ 'is-invalid': errors.username }" />
+                    <Field name="username" v-model="values.username" type="text" class="form-control" :class="{ 'is-invalid': errors.username }" />
                     <div class="invalid-feedback">{{ errors.username }}</div>
                 </div>
                 <div class="form-group">
                     <label>Contraseña</label>
-                    <Field name="password" type="password" class="form-control" :class="{ 'is-invalid': errors.password }" />
+                    <Field name="password" v-model="values.password" type="password" class="form-control" :class="{ 'is-invalid': errors.password }" />
                     <div class="invalid-feedback">{{ errors.password }}</div>
                 </div>
                 <div class="form-group">

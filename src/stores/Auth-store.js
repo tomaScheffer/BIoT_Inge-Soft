@@ -3,7 +3,7 @@ import { fetchWrapper } from '@/helpers/Index.js';
 import { router } from '@/router/Index.js';
 import { useAlertStore } from '@/stores/Index.js';
 
-const baseUrl = `${import.meta.env.VITE_API_URL}/users`;
+const baseUrl = `http://localhost:5000/api`;
 
 export const useAuthStore = defineStore({
 
@@ -17,9 +17,23 @@ export const useAuthStore = defineStore({
 
         async login(username, password) {
 
-            try {
-                const user = await fetchWrapper.post(`${baseUrl}/authenticate`, { username, password });    
-
+            fetch(`${baseUrl}/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Save the response in the user variable
+                const user = data.username;
+                
                 // Update pinia state
                 this.user = user;
 
@@ -28,10 +42,12 @@ export const useAuthStore = defineStore({
 
                 // Redirect to previous url or default to home page
                 router.push(this.returnUrl || '/');
-            } catch (error) {
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
                 const alertStore = useAlertStore();
-                alertStore.error(error);                
-            }
+                alertStore.error(error);   
+            });   
         },
         logout() {
             

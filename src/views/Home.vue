@@ -13,9 +13,9 @@ const usersStore = useUsersStore();
 //let  latestPh  = 7;
 
 // Placeholder icons
-const temperatureIcon = "/public/thermometer.png"
-const phIcon = "/public/ph.png";
-const humidityIcon = "/public/humidity.png";
+const temperatureIcon = "/thermometer.png"
+const phIcon = "/ph.png";
+const humidityIcon = "/humidity.png";
  
  
 </script> 
@@ -80,7 +80,7 @@ export default {
  
 <template>
   <div v-if="user">
-    <h1>Hola {{ user.firstName }}!</h1>
+    <h1>Hola {{ user }}!</h1>
      <div>
       <a href="http://localhost:3000/d/sLUcEOMIk/moisture?orgId=1&refresh=5s"  target="_blank">Dashboard</a>
 

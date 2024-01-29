@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import { fetchWrapper } from '@/helpers/Index.js';
 import { useAuthStore } from '@/stores/Index.js';
 
-const baseUrl = `${import.meta.env.VITE_API_URL}/users`;
+const baseUrl = `http://localhost:5000/api`;
 
 export const useUsersStore = defineStore({
 
@@ -15,7 +15,27 @@ export const useUsersStore = defineStore({
     actions: {
 
         async register(user) {
-            await fetchWrapper.post(`${baseUrl}/register`, user);
+            try {
+                const response = await fetch(`${baseUrl}/register`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(user),
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'Error en el registro');
+                }
+
+                // Registration successful
+
+            } catch (error) {
+                // Handle registration error
+                console.error('Error during user registration:', error);
+                throw error;
+            }
         },
         async getAll() {
 
