@@ -15,7 +15,7 @@
         </Nav>
         
         <Alert />
-        <div class="container pt-4 pb-4">
+        <div>
             <router-view />
         </div>
     </div>

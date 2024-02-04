@@ -8,7 +8,7 @@ let highlight = false;
   <nav v-show="authStore.user" class="navbar navbar-expand navbar-dark" style="background-color: rgb(7, 143, 7);">
     <div class="navbar-nav w-100 d-flex justify-content-between align-items-center">
       <router-link to="/">
-        <img src="logo.ico" alt="Icon" class="nav-icon" />
+        <img src="/logo.ico" alt="Icon" class="nav-icon" />
         <span class="nav-text" :class="{ 'highlighted': highlight }" @mouseover="highlight = true" @mouseleave="highlight = false">
           <span class="white-text">Panel</span>
         </span>
